@@ -2,6 +2,9 @@
 
 This repository is a class assignment to practice with source control and TypeScript
 
+## Live Website
+Live website hosted by [GitHub Pages](https://feelinproggy.github.io/CPW204_Bookstore_OngoingPractice/)
+
 ## Getting started
 
 ### Installing TypeScript
