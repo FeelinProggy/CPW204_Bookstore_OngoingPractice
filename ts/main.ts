@@ -31,12 +31,14 @@ window.onload = function() {
 }
 
 
+
+
 /**
  * Onclick function that will send user data for validation 
  * to be added to we storage.
  */
 function processBook() {
-    
+
     let userBook = getBook();
     if (userBook != null) {
         addBook(userBook);
@@ -53,7 +55,7 @@ function processBook() {
  * spans on the webpage.
  */
 function getBook():Book {
-    //Get all inputs
+    // Get all inputs
     let isbnTextBox = document.querySelector("#isbn") as HTMLInputElement;
     let titleTextBox = document.querySelector("#title") as HTMLInputElement;
     let priceTextBox = document.querySelector("#price") as HTMLInputElement;
@@ -65,6 +67,38 @@ function getBook():Book {
     // Validate ISBN
     let isbn:string = isbnTextBox.value;
     isValidIsbn13(isbn, isbnTextBox);
+
+    // Validate title
+    let title:string = titleTextBox.value;
+    if (title.trim() == "") {
+        isValidData = false;
+        titleTextBox.nextElementSibling!.textContent = "Please enter a title."
+    }
+    else {        
+        titleTextBox.nextElementSibling!.textContent = "";
+    }
+
+    // Validate price
+    let price = parseFloat(priceTextBox.value);
+    if (isNaN(price) || price < 0) {
+        isValidData = false;
+        priceTextBox.nextElementSibling!.textContent = "Price must be a positive value"
+    }
+    else {        
+        priceTextBox.nextElementSibling!.textContent = "";
+    }
+
+    // Validate Date
+    let releaseDate = releaseDateTextBox.value;
+    let releaseDateCheck = Date.parse(releaseDate);
+    if (isNaN(releaseDateCheck)) {
+        isValidData = false;
+        releaseDateTextBox.nextElementSibling!.textContent = "Please enter a valid date."
+    }
+    else {        
+        releaseDateTextBox.nextElementSibling!.textContent = "";
+    }
+
 }
 
 /**
@@ -78,7 +112,8 @@ function addBook(b:Book):void {
 
 /**
  * Validates the ISBN 13 number by length and algorithm,
- * returns true/false, and updates ISBN span messages accordingly
+ * returns true/false, and updates ISBN span messages accordingly.
+ * Algorithm acquired from ChatGPT.
  * @param isbn , isbnTextBox element
  * @returns 
  */
@@ -105,7 +140,6 @@ function isValidIsbn13(isbn:string, isbnTB:HTMLInputElement):boolean {
         isbnTB.nextElementSibling!.textContent = "Please enter a valid ISBN-13";
         return false;
     }
-
     
     isbnTB.nextElementSibling!.textContent = "";
     return true;

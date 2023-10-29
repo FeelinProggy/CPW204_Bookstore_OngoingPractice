@@ -19,6 +19,31 @@ function getBook() {
     let isValidData = true;
     let isbn = isbnTextBox.value;
     isValidIsbn13(isbn, isbnTextBox);
+    let title = titleTextBox.value;
+    if (title.trim() == "") {
+        isValidData = false;
+        titleTextBox.nextElementSibling.textContent = "Please enter a title.";
+    }
+    else {
+        titleTextBox.nextElementSibling.textContent = "";
+    }
+    let price = parseFloat(priceTextBox.value);
+    if (isNaN(price) || price < 0) {
+        isValidData = false;
+        priceTextBox.nextElementSibling.textContent = "Price must be a positive value";
+    }
+    else {
+        priceTextBox.nextElementSibling.textContent = "";
+    }
+    let releaseDate = releaseDateTextBox.value;
+    let releaseDateCheck = Date.parse(releaseDate);
+    if (isNaN(releaseDateCheck)) {
+        isValidData = false;
+        releaseDateTextBox.nextElementSibling.textContent = "Please enter a valid date.";
+    }
+    else {
+        releaseDateTextBox.nextElementSibling.textContent = "";
+    }
 }
 function addBook(b) {
 }
