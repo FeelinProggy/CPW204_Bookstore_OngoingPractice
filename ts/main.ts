@@ -54,14 +54,14 @@ function processBook() {
  * will be returned and will update error messages in the 
  * spans on the webpage.
  */
-function getBook():Book {
+function getBook():Book | null {
     // Get all inputs
     let isbnTextBox = document.querySelector("#isbn") as HTMLInputElement;
     let titleTextBox = document.querySelector("#title") as HTMLInputElement;
     let priceTextBox = document.querySelector("#price") as HTMLInputElement;
     let releaseDateTextBox = document.querySelector("#release-date") as HTMLInputElement;
 
-    // Validate date
+    // Validate data
     let isValidData:boolean = true;
 
     // Validate ISBN
@@ -89,14 +89,37 @@ function getBook():Book {
     }
 
     // Validate Date
-    let releaseDate = releaseDateTextBox.value;
-    let releaseDateCheck = Date.parse(releaseDate);
-    if (isNaN(releaseDateCheck)) {
+    /**
+     * In this code, we split the releaseDate string into an array of strings 
+     * ['year', 'month', 'day'], and then we use map(Number) to convert each 
+     * string to a number. We then use these numbers to create a new Date object.
+     * This approach eliminates the need to use Date.parse and directly creates
+     *  the Date object using the individual components of the date.
+     */
+    let [year, month, day] = releaseDateTextBox.value.split('-').map(Number);
+    if (isNaN(year) || isNaN(month) || isNaN(day)) {
         isValidData = false;
         releaseDateTextBox.nextElementSibling!.textContent = "Please enter a valid date."
     }
     else {        
         releaseDateTextBox.nextElementSibling!.textContent = "";
+    }
+
+
+    // Once all data has been validated...
+    if (isValidData) {
+        let addedBook = new Book;
+        addedBook.isbn = isbn;
+        addedBook.price = price;
+        addedBook.title = title;
+        addedBook.releaseDate = new Date(year, month - 1, day);
+        //  Note that we subtract 1 from the month because the month argument in the
+        //  Date constructor is zero-based (January is 0, February is 1, etc.).
+
+        return addedBook;
+    }
+    else {
+        return null;
     }
 
 }
@@ -106,6 +129,8 @@ function getBook():Book {
  * @param b the Book object containing valid data to be added.
  */
 function addBook(b:Book):void {
+    alert("Data was valid, book added");
+    console.log(b);
 
 }
 

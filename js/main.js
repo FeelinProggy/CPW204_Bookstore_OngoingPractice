@@ -35,17 +35,29 @@ function getBook() {
     else {
         priceTextBox.nextElementSibling.textContent = "";
     }
-    let releaseDate = releaseDateTextBox.value;
-    let releaseDateCheck = Date.parse(releaseDate);
-    if (isNaN(releaseDateCheck)) {
+    let [year, month, day] = releaseDateTextBox.value.split('-').map(Number);
+    if (isNaN(year) || isNaN(month) || isNaN(day)) {
         isValidData = false;
         releaseDateTextBox.nextElementSibling.textContent = "Please enter a valid date.";
     }
     else {
         releaseDateTextBox.nextElementSibling.textContent = "";
     }
+    if (isValidData) {
+        let addedBook = new Book;
+        addedBook.isbn = isbn;
+        addedBook.price = price;
+        addedBook.title = title;
+        addedBook.releaseDate = new Date(year, month - 1, day);
+        return addedBook;
+    }
+    else {
+        return null;
+    }
 }
 function addBook(b) {
+    alert("Data was valid, book added");
+    console.log(b);
 }
 function isValidIsbn13(isbn, isbnTB) {
     let isbnRegex = /^\d{13}$/;
