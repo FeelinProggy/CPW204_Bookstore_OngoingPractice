@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JP's Books - Book List</title>
-    <script defer src=""js/main.js"></script>
+    <script defer src="js/main.js"></script>
     <style>
         div {
             text-align: center;
@@ -14,7 +14,7 @@
 <body>
     <h2>Add a Book</h2>
     <form>
-        <label for="isbn">ISBN</label>
+        <label for="isbn">ISBN-13</label>
         <input type="text" id="isbn">
         <span class="error-msg"></span>
         <br>
@@ -34,7 +34,7 @@
         <span class="error-msg"></span>
         <br>
 
-        <button type="button">Submit Book</button>
+        <button type="button" id="submit-book">Submit Book</button>
         
     </form>
 
