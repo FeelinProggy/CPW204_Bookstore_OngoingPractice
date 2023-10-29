@@ -12,10 +12,31 @@
     </style>
 </head>
 <body>
-    <div>
-        <h1>Pardon our dust!</h1>
-        <h2>We're still getting set up, check back soon.</h2>
-        <img src="images/storefront.jpg"></img>
-    </div>
+    <h2>Add a Book</h2>
+    <form>
+        <label for="isbn">ISBN</label>
+        <input type="text" id="isbn">
+        <span class="error-msg"></span>
+        <br>
+        
+        <label for="title">Title</label>
+        <input type="text" id="title">
+        <span class="error-msg"></span>
+        <br>
+        
+        <label for="price">Price</label>
+        <input type="number" step=".01" id="price">
+        <span class="error-msg"></span>
+        <br>
+        
+        <label for="release-date">Release Date</label>
+        <input type="date" id="release-date">
+        <span class="error-msg"></span>
+        <br>
+
+        <button type="button">Submit Book</button>
+        
+    </form>
+
 </body>
 </html>
