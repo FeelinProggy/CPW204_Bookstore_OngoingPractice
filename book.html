@@ -16,12 +16,12 @@
     <form>
         <p> Here is a real ISBN for testing purposes 978-1492657965</p>
         <label for="isbn">ISBN-13</label>
-        <input type="text" id="isbn" value="9781492657965">
+        <input type="text" id="isbn">
         <span class="error-msg"></span>
         <br>
         
         <label for="title">Title</label>
-        <input type="text" id="title" value="Test Title">
+        <input type="text" id="title">
         <span class="error-msg"></span>
         <br>
         
@@ -39,15 +39,8 @@
         
     </form>
 
-    <div id="book-display">
-        <div>
-            <h2>Book title : ISBN000000000</h2>
-            <p>This book was released on {release date}
-                <br> Price : {book price}
-
-            </p>
-        </div>
-    </div>
+    <!-- Added books will populate within this div -->
+    <div id="book-display"> </div>
 
 </body>
 </html>

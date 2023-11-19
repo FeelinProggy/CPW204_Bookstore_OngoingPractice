@@ -130,13 +130,16 @@ function addBook(b:Book):void {
     console.log(b);
 
    /// Display the book to the web page
-    let bookDiv = document.createElement("div");
+    let bookDiv:HTMLDivElement = document.createElement("div");
 
     let titleHeading = document.createElement("h2");
     titleHeading.textContent = `${b.title} : ${b.isbn}`;
     // Add h2 to book div <div><h2>Title : ISBN
     bookDiv.appendChild(titleHeading); 
     
+    let bookInfo:HTMLParagraphElement = document.createElement("p");
+    bookInfo.textContent = `Released Date: ${b.releaseDate?.toDateString()} | Price: $${b.price.toFixed(2)}`;
+    bookDiv.appendChild(bookInfo);
 
     //Add bookDiv to web page
     let bookListDisplay = document.querySelector("#book-display");

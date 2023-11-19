@@ -56,11 +56,15 @@ function getBook() {
     }
 }
 function addBook(b) {
+    var _a;
     console.log(b);
     let bookDiv = document.createElement("div");
     let titleHeading = document.createElement("h2");
     titleHeading.textContent = `${b.title} : ${b.isbn}`;
     bookDiv.appendChild(titleHeading);
+    let bookInfo = document.createElement("p");
+    bookInfo.textContent = `Released Date: ${(_a = b.releaseDate) === null || _a === void 0 ? void 0 : _a.toDateString()} | Price: $${b.price.toFixed(2)}`;
+    bookDiv.appendChild(bookInfo);
     let bookListDisplay = document.querySelector("#book-display");
     bookListDisplay === null || bookListDisplay === void 0 ? void 0 : bookListDisplay.appendChild(bookDiv);
 }
