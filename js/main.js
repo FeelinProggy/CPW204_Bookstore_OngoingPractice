@@ -44,7 +44,7 @@ function getBook() {
         releaseDateTextBox.nextElementSibling.textContent = "";
     }
     if (isValidData) {
-        let addedBook = new Book;
+        let addedBook = new Book();
         addedBook.isbn = isbn;
         addedBook.price = price;
         addedBook.title = title;
@@ -56,8 +56,13 @@ function getBook() {
     }
 }
 function addBook(b) {
-    alert("Data was valid, book added");
     console.log(b);
+    let bookDiv = document.createElement("div");
+    let titleHeading = document.createElement("h2");
+    titleHeading.textContent = `${b.title} : ${b.isbn}`;
+    bookDiv.appendChild(titleHeading);
+    let bookListDisplay = document.querySelector("#book-display");
+    bookListDisplay === null || bookListDisplay === void 0 ? void 0 : bookListDisplay.appendChild(bookDiv);
 }
 function isValidIsbn13(isbn, isbnTB) {
     let isbnRegex = /^\d{13}$/;

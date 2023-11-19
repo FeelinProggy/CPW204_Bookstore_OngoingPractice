@@ -31,8 +31,6 @@ window.onload = function() {
 }
 
 
-
-
 /**
  * Onclick function that will send user data for validation 
  * to be added to we storage.
@@ -108,7 +106,7 @@ function getBook():Book | null {
 
     // Once all data has been validated...
     if (isValidData) {
-        let addedBook = new Book;
+        let addedBook = new Book();
         addedBook.isbn = isbn;
         addedBook.price = price;
         addedBook.title = title;
@@ -125,13 +123,30 @@ function getBook():Book | null {
 }
 
 /**
- * Takes a valid Book object an adds it to web storage.
+ * Takes a valid Book object and adds it to the web page and to web storage.
  * @param b the Book object containing valid data to be added.
  */
 function addBook(b:Book):void {
-    alert("Data was valid, book added");
     console.log(b);
 
+   /// Display the book to the web page
+    let bookDiv = document.createElement("div");
+
+    let titleHeading = document.createElement("h2");
+    titleHeading.textContent = `${b.title} : ${b.isbn}`;
+    // Add h2 to book div <div><h2>Title : ISBN
+    bookDiv.appendChild(titleHeading); 
+    
+
+    //Add bookDiv to web page
+    let bookListDisplay = document.querySelector("#book-display");
+    // Add newly created book 
+    bookListDisplay?.appendChild(bookDiv); 
+    // Alternate condensed version 
+    // document.querySelector("#book-display")?.appendChild(bookDiv);
+
+    //
+    
 }
 
 
